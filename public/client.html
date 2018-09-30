@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="author" content="github.com/Yq2" />
     <script>
         window.addEventListener("load", function(evt) {
             let output = document.getElementById("output");
@@ -18,17 +19,17 @@
                 }
                 ws = new WebSocket("ws://localhost:7777/ws");
                 ws.onopen = function(evt) {
-                    print("OPEN");
+                    print("开始连接");
                 };
                 ws.onclose = function(evt) {
-                    print("CLOSE");
+                    print("关闭连接");
                     ws = null;
                 };
                 ws.onmessage = function(evt) {
-                    print("RESPONSE: " + evt.data);
+                    print("服务端: " + evt.data);
                 };
                 ws.onerror = function(evt) {
-                    print("ERROR: " + evt.data);
+                    print("错误: " + evt.data);
                 };
                 return false;
             };
@@ -36,7 +37,7 @@
                 if (!ws) {
                     return false;
                 }
-                print("SEND: " + input.value);
+                print("对话: " + input.value);
                 ws.send(input.value);
                 return false;
             };
@@ -53,20 +54,24 @@
 <body>
 <table>
     <tr><td valign="top" width="50%">
-        <p>Click "Open" to create a connection to the server,
-            "Send" to send a message to the server and "Close" to close the connection.
-            You can change the message and send multiple times.
+        <p>点击 "打开连接" 开始一个websocket连接,
+            "发送" 发送一个消息到服务器 and "关闭连接" 关闭连接.
+            你可以多次发送消息...
         </p>
         <form>
-            <button id="open">Open</button>
-            <button id="close">Close</button>
-            <input id="input" type="text" value="Hello world!">
-            <button id="send">Send</button>
+            <button id="open">打开连接</button>
+            <button id="close">关闭连接</button>
+            <input id="input" type="text" value="杨强你真棒！">
+            <button id="send">发送^_^</button>
         </form>
+        <p>
+            代码托管地址GitHub：github.com/Yq2/go-websocket
+        </p>
     </td><td valign="top" width="50%">
         <div id="output"></div>
     </td>
     </tr>
 </table>
+
 </body>
 </html>
