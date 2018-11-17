@@ -17,7 +17,7 @@
                 if (ws) {
                     return false;
                 }
-                ws = new WebSocket("ws://39.107.77.94:7777/ws");
+                ws = new WebSocket("ws://localhost:7777/ws");
                 ws.onopen = function(evt) {
                     print("开始连接");
                 };

@@ -1,9 +1,9 @@
 package main
 
 import (
-	"net/http"
 	"github.com/gorilla/websocket"
 	"go-websocket/impl"
+	"net/http"
 	"time"
 )
 
@@ -41,10 +41,10 @@ func wsHandler (w http.ResponseWriter, r *http.Request) {
 			err error
 		)
 		for {
-			if err = conn.WriteMessage([]byte("heartbeat")); err != nil {
+			time.Sleep(2 * time.Minute)
+			if err = conn.WriteMessage([]byte("ping")); err != nil {
 				return
 			}
-			time.Sleep(1 * time.Second)
 		}
 	}()
 
